@@ -9,10 +9,10 @@ TOKEN : {
   < LOWERCHARS : ["a" - "z"] > |
   < UPERCHARS : ["A" - "Z"] > |
   < NUMCHARS : ["0" - "9"] >   
-}int start() :{}{  parser()<EOF>  {    return 0;  }}
+}int start() :{}{  select()<EOF>  {    return 0;  }}
 void parser() : { }
 {
-  (operation())*
+  word()
 }
 
 
@@ -55,18 +55,31 @@ void numchar() : { }
 }
 
 void number() : { }
-{    (numchar())+
+{  (numchar())+
+}
+
+void word() : { }
+{
+  (lowerchar()|uperchar())(word())*
 }
   
 
-
-
-
-
-
-
 // ------------------------------------------------------------------
 
+void sql() : { }
+{
+  select()
+}
+
+void select() : { }
+{
+  "select" selectdata() (","{ selectdata(); })* | "select *"
+}
+
+void selectdata() : { }
+{
+  word()"."word() | "avg("selectdata()")"
+}
 
 
 

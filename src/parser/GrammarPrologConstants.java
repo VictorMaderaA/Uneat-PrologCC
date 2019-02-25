@@ -45,6 +45,12 @@ public interface GrammarPrologConstants {
     "<LOWERCHARS>",
     "<UPERCHARS>",
     "<NUMCHARS>",
+    "\"select\"",
+    "\",\"",
+    "\"select *\"",
+    "\".\"",
+    "\"avg(\"",
+    "\")\"",
   };
 
 }
