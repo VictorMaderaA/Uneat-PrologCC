@@ -25,7 +25,7 @@ public interface GrammarPrologConstants {
   /** RegularExpression Id. */
   int UPERCHARS = 11;
   /** RegularExpression Id. */
-  int NUMCHAR = 12;
+  int NUMCHARS = 12;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -44,7 +44,7 @@ public interface GrammarPrologConstants {
     "\"%\"",
     "<LOWERCHARS>",
     "<UPERCHARS>",
-    "<NUMCHAR>",
+    "<NUMCHARS>",
   };
 
 }

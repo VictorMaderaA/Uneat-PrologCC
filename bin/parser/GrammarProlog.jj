@@ -8,7 +8,7 @@ public class GrammarProlog{  public static void main(String args []) throws Pa
 TOKEN : {
   < LOWERCHARS : ["a" - "z"] > |
   < UPERCHARS : ["A" - "Z"] > |
-  < NUMCHAR : ["0" - "9"] >   
+  < NUMCHARS : ["0" - "9"] >   
 }int start() :{}{  parser()<EOF>  {    return 0;  }}
 void parser() : { }
 {
@@ -21,7 +21,7 @@ void parser() : { }
 
 void alphanumeric() : { }
 {
-  (< LOWERCHARS >)|( < UPERCHARS >  )|( < NUMCHAR > )
+  (< LOWERCHARS >)|( < UPERCHARS >  )|( < NUMCHARS > )
 }
 
 void operators() : { }
@@ -35,8 +35,32 @@ void operators() : { }
 
 void operation() : { }
 {
-  (< NUMCHAR >)+operators()(< NUMCHAR >)+
+  number()operators()number() (operators(){ number(); } )*
 }
+
+
+void lowerchar() : { }
+{
+  < LOWERCHARS >
+}
+
+void uperchar() : { }
+{
+  < UPERCHARS >
+}
+
+void numchar() : { }
+{
+  < NUMCHARS >
+}
+
+void number() : { }
+{    (numchar())+
+}
+  
+
+
+
 
 
 

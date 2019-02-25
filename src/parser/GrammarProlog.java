@@ -49,7 +49,7 @@ public class GrammarProlog implements GrammarPrologConstants {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case NUMCHAR:
+      case NUMCHARS:
         ;
         break;
       default:
@@ -69,8 +69,8 @@ public class GrammarProlog implements GrammarPrologConstants {
     case UPERCHARS:
       jj_consume_token(UPERCHARS);
       break;
-    case NUMCHAR:
-      jj_consume_token(NUMCHAR);
+    case NUMCHARS:
+      jj_consume_token(NUMCHARS);
       break;
     default:
       jj_la1[1] = jj_gen;
@@ -104,24 +104,46 @@ public class GrammarProlog implements GrammarPrologConstants {
   }
 
   static final public void operation() throws ParseException {
+    number();
+    operators();
+    number();
     label_2:
     while (true) {
-      jj_consume_token(NUMCHAR);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case NUMCHAR:
+      case PLUS:
+      case MINUS:
+      case MULTIPLY:
+      case DIVIDE:
+      case MOD:
         ;
         break;
       default:
         jj_la1[3] = jj_gen;
         break label_2;
       }
+      operators();
+                                            number();
     }
-    operators();
+  }
+
+  static final public void lowerchar() throws ParseException {
+    jj_consume_token(LOWERCHARS);
+  }
+
+  static final public void uperchar() throws ParseException {
+    jj_consume_token(UPERCHARS);
+  }
+
+  static final public void numchar() throws ParseException {
+    jj_consume_token(NUMCHARS);
+  }
+
+  static final public void number() throws ParseException {
     label_3:
     while (true) {
-      jj_consume_token(NUMCHAR);
+      numchar();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case NUMCHAR:
+      case NUMCHARS:
         ;
         break;
       default:
@@ -147,7 +169,7 @@ public class GrammarProlog implements GrammarPrologConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x1000,0x1c00,0x3e0,0x1000,0x1000,};
+      jj_la1_0 = new int[] {0x1000,0x1c00,0x3e0,0x3e0,0x1000,};
    }
 
   /** Constructor with InputStream. */
