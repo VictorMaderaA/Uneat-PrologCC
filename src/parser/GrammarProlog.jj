@@ -1,0 +1,50 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */options{  static = true;}PARSER_BEGIN(GrammarProlog)package parser;
+
+public class GrammarProlog{  public static void main(String args []) throws ParseException  {    GrammarProlog parser = new GrammarProlog(System.in);    while (true)    {      System.out.println("Reading from standard input...");      System.out.print("Enter an expression:");      try      {        switch (GrammarProlog.start())        {          case 0 :           System.out.println("OK.");          break;          case 1 :           System.out.println("Goodbye.");          break;          default :           break;        }      }      catch (Exception e)      {        System.out.println("NOK.");        System.out.println(e.getMessage());        GrammarProlog.ReInit(System.in);      }      catch (Error e)      {        System.out.println("Oops.");        System.out.println(e.getMessage());        break;      }    }  }}PARSER_END(GrammarProlog)SKIP :{  " "| "\r"| "\t"| "\n"}TOKEN : /* OPERATORS */{  < PLUS : "+" >| < MINUS : "-" >| < MULTIPLY : "*" >| < DIVIDE : "/" >
+| < MOD : "%" >}
+
+TOKEN : {
+  < LOWERCHARS : ["a" - "z"] > |
+  < UPERCHARS : ["A" - "Z"] > |
+  < NUMCHAR : ["0" - "9"] >   
+}int start() :{}{  parser()<EOF>  {    return 0;  }}
+void parser() : { }
+{
+  (operation())*
+}
+
+
+
+// CORE -------------------------------------------------------------
+
+void alphanumeric() : { }
+{
+  (< LOWERCHARS >)|( < UPERCHARS >  )|( < NUMCHAR > )
+}
+
+void operators() : { }
+{
+  < PLUS >
+| < MINUS >
+| < MULTIPLY >
+| < DIVIDE >
+| < MOD >
+}
+
+void operation() : { }
+{
+  (< NUMCHAR >)+operators()(< NUMCHAR >)+
+}
+
+
+
+
+// ------------------------------------------------------------------
+
+
+
+
+
+
